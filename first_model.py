@@ -3,8 +3,8 @@ from tensorflow.keras import layers
 from tensorflow.keras.datasets import mnist
 
 (train_set, train_labels), (test_set, test_label) = mnist.load_data()
-train_set = train_set.reshape(-1, 28 * 28).astpe("float32") / 255.0
-test_set = test_set.reshape(-1, 28 * 28).astpe("float32") / 255.0
+train_set = train_set.reshape(-1, 28 * 28) / 255.0
+test_set = test_set.reshape(-1, 28 * 28) / 255.0
 
 # Sequential API (Very convenient, not very flexible)
 model = keras.Sequential(
