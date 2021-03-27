@@ -26,19 +26,27 @@ model = keras.Sequential(
 
 
 def my_model():
+    """
+    Model with batch normalization and regularization L2 and Dropout
+    """
     inputs = keras.Input(shape=(32, 32, 3))
-    __x = layers.Conv2D(32, 5)(inputs)
+    __x = layers.Conv2D(32, 5, padding="same",
+                        kernel_regularizer=regularizers.l2(0.01))(inputs)
     __x = layers.BatchNormalization()(__x)
     __x = keras.activations.relu(__x)
     __x = layers.MaxPool2D()(__x)
-    __x = layers.Conv2D(64, 3, padding="same")(__x)
+    __x = layers.Conv2D(64, 3, padding="same",
+                        kernel_regularizer=regularizers.l2(0.01))(__x)
     __x = layers.BatchNormalization()(__x)
     __x = keras.activations.relu(__x)
-    __x = layers.Conv2D(128, 3)(__x)
+    __x = layers.Conv2D(128, 3, padding="same",
+                        kernel_regularizer=regularizers.l2(0.01))(__x)
     __x = layers.BatchNormalization()(__x)
     __x = keras.activations.relu(__x)
     __x = layers.Flatten()(__x)
-    __x = layers.Dense(64, activation="relu")(__x)
+    __x = layers.Dense(64, activation="relu",
+                       kernel_regularizer=regularizers.l2(0.01))(__x)
+    __x = layers.Dropout(0.5)(__x)
     outputs = layers.Dense(10)(__x)
     _model = keras.Model(inputs=inputs, outputs=outputs)
     return _model
