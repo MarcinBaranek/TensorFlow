@@ -3,8 +3,8 @@ from tensorflow.keras import layers
 from tensorflow.keras.datasets import cifar10
 
 (train_set, train_labels), (test_set, test_label) = cifar10.load_data()
-print(train_set.shape)
-print(train_labels.shape)
+# print(train_set.shape)
+# print(train_labels.shape)
 train_set = train_set.reshape(-1, 32, 32, 3) / 255.0
 test_set = test_set.reshape(-1, 32, 32, 3) / 255.0
 
